@@ -12,7 +12,7 @@ class Recipe
     end
 
     def recipe_ingredients
-        RecipeIngredients.all.select {|ingredient| ingredient.recipe == self}
+        RecipeIngredient.all.select {|ri| ri.recipe == self}
     end
 
     def users
@@ -22,8 +22,8 @@ class Recipe
     end
 
     def ingredients
-        self.recipe_ingredients.collect do |ingredient|
-            ingredient.user
+        self.recipe_ingredients.collect do |ri|
+            ri.ingredient
         end
     end
 
@@ -35,7 +35,10 @@ class Recipe
 
     def allergens
         self.ingredients.select {|ingredient| ingredient.allergen?}
-        
+    end
+
+    def self.most_popular
+      self.all.max_by {|recipe| recipe.users.count}
     end
 
     def self.all
