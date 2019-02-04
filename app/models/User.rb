@@ -29,8 +29,7 @@ class User
   end
 
   def top_three_recipies
-    sorted_recipes = self.recipes.sort_by{|recipe| recipe.rating}.reverse
-    sorted_recipes.slice(0,3)
+    sorted_recipes = self.recipes.sort_by{|recipe| recipe.rating}.last(3)
   end
 
   def most_recent_recipe
