@@ -13,6 +13,7 @@ rc2 = RecipeCard.new(chef_katy, omlette, DateTime.now, 8)
 rc3 = RecipeCard.new(chef_tim, spaghetti, DateTime.now, 3)
 rc4 = RecipeCard.new(chef_greg, spaghetti, DateTime.now, 10)
 rc5 = RecipeCard.new(chef_greg, omlette, DateTime.now, 7)
+rc6 = RecipeCard.new(chef_greg, omlette, DateTime.now, 8)
 # rc6 = RecipeCard.new(chef_greg, hamburger, DateTime.now, 2)
 
 
