@@ -14,7 +14,19 @@ rc3 = RecipeCard.new(chef_tim, spaghetti, DateTime.now, 3)
 rc4 = RecipeCard.new(chef_greg, spaghetti, DateTime.now, 10)
 rc5 = RecipeCard.new(chef_greg, omlette, DateTime.now, 7)
 rc6 = RecipeCard.new(chef_greg, omlette, DateTime.now, 8)
-# rc6 = RecipeCard.new(chef_greg, hamburger, DateTime.now, 2)
+
+flour = Ingredient.new("Flour")
+sugar = Ingredient.new("sugar")
+eggs = Ingredient.new("eggs")
+
+rash = Allergy.new(chef_greg, flour)
+hives = Allergy.new(chef_katy, flour)
+itch = Allergy.new(chef_greg, eggs)
+
+ri1 = RecipeIngredient.new(hamburger, flour)
+ri2 = RecipeIngredient.new(hamburger, eggs)
+ri3 = RecipeIngredient.new(spaghetti, flour)
+
 
 
 binding.pry

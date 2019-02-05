@@ -32,6 +32,14 @@ class User
     self.recipes.last
   end
 
+  def declare_allergy(ingredient)
+    Allergy.new(self, ingredient)
+  end
+
+  def allergies
+    Allergy.all.select {|allergy| allergy.user == self}
+  end
+
   def self.all
       @@all
   end
