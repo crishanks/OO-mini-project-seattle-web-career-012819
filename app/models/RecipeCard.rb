@@ -1,17 +1,18 @@
+require 'date'
+
 class RecipeCard
     @@all = []
-    attr_accessor :recipe, :user, :date, :rating
+    attr_reader :user, :recipe, :date, :rating
 
-    def initialize(recipe: nil, user: nil, date: 'date', rating: 'rating')
-        @recipe = recipe
+    def initialize(user, recipe, date, rating)
         @user = user
-        @date = date
+        @recipe = recipe
+        @date = DateTime.now
         @rating = rating
-
         @@all << self
     end
 
-    def self.all 
+    def self.all
         @@all
     end
 end

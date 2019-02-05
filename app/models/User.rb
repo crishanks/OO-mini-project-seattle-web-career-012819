@@ -1,51 +1,36 @@
 class User
   @@all = []
+  attr_reader :name
 
-  attr_accessor :name
-
-  def initialize(name: "bob")
-    @name = name
-    @@all << self
+  def initialize(name)
+      @name = name
+      @@all << self
   end
 
   def recipe_cards
-    RecipeCard.all.select {|card| card.user == self}
+      RecipeCard.all.select {|card| card.user == self}
+      #return an array of all the recipe cards that belong to this user
   end
 
   def recipes
-    self.recipe_cards.collect {|card| card.recipe}
+      self.recipe_cards.map {|card| card.recipe}
   end
 
-  def allergies
-    Allergy.all.select {|allergy| allergy.user == self}
+  def add_recipe_card(recipe, date, rating)
+    RecipeCard.new(self, recipe, date, rating)
   end
 
-  def add_recipe_card(recipe: nil, date: '', rating: 0)
-    RecipeCard.new(recipe: recipe, date: date, rating: rating, user: self)
-  end
-
-  def declare_allergy(ingredient)
-    Allergy.new(user: self, ingredient: ingredient)
-  end
-
-  def top_three_recipies
-    sorted_recipes = self.recipes.sort_by{|recipe| recipe.rating}.last(3)
-  end
-
-  def most_recent_recipe
-    self.recipes.last
-  end
-
-  def safe_recipes
-    Recipe.all.select do |recipe|
-      !recipe.ingredients.any? do |ingredient|
-        ingredient.users_allergic_to.include?(self)
-      end
+  def top_three_recipes
+    recipe_hash = {}
+    self.recipe_cards.each do |card| 
+      recipe_hash[card.recipe] = card.rating
     end
+    recipe_hash.sort_by{ |key, value| value }.last(3)
+    # binding.pry
   end
 
   def self.all
-    @@all
+      @@all
   end
-
 end
+
