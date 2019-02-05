@@ -26,7 +26,10 @@ class User
       recipe_hash[card.recipe] = card.rating
     end
     recipe_hash.sort_by{ |key, value| value }.last(3)
-    # binding.pry
+  end
+
+  def most_recent_recipe
+    self.recipes.last
   end
 
   def self.all
